@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     // IBcollection 所有card button
     @IBOutlet var cardButtons: [UIButton]!
     
-//    var emojiChoices: Array<String> = ["🎃","👻","🎃","👻"]
+    // var emojiChoices: Array<String> = ["🎃","👻","🎃","👻"]   复制类型已经固定,所以类型可以省略
     var emojiChoices = ["🎃","👻","🎃","👻"]
     
     // 点击卡片 IBAction
