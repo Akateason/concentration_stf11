@@ -10,19 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // 翻牌翻过的次数
     var flipCount: Int = 0 {
         didSet {
             flipCountLabel.text = "Flips: \(flipCount)"
         }
     }
         
+    // lb flip count
     @IBOutlet weak var flipCountLabel: UILabel!
     
+    // IBcollection 所有card button
     @IBOutlet var cardButtons: [UIButton]!
     
 //    var emojiChoices: Array<String> = ["🎃","👻","🎃","👻"]
     var emojiChoices = ["🎃","👻","🎃","👻"]
     
+    // 点击卡片 IBAction
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount += 1
         if let cardNumber = cardButtons.firstIndex(of: sender) {
@@ -33,6 +37,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // 翻转卡片 func
     func flipCard(withEmoji emoji: String, on button: UIButton) {
         if button.currentTitle == emoji {
             button.setTitle("", for: UIControl.State.normal)
