@@ -20,8 +20,9 @@ class ViewController: UIViewController {
     // lb flip count
     @IBOutlet weak var flipCountLabel: UILabel!
     
-    // IBcollection 所有card button
+    // IBOutlet collection 数组 所有card button
     @IBOutlet var cardButtons: [UIButton]!
+//    @IBOutlet var cardButtons: Array<UIButton>!
     
     // var emojiChoices: Array<String> = ["🎃","👻","🎃","👻"]   复制类型已经固定,所以类型可以省略
     var emojiChoices = ["🎃","👻","🎃","👻"]
@@ -29,6 +30,7 @@ class ViewController: UIViewController {
     // 点击卡片 IBAction
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount += 1
+        //因为. func firstIndex(of element: UIButton) -> Int? 返回的是可选类型.
         if let cardNumber = cardButtons.firstIndex(of: sender) {
             print("cardNumber = \(cardNumber)")
             flipCard(withEmoji: emojiChoices[cardNumber], on: sender)
