@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // 变量. 翻牌游戏
+    lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
+    
     // 翻牌翻过的次数
     var flipCount: Int = 0 {
         didSet {
