@@ -15,8 +15,39 @@ class Concentration {
 //    var cards = Array<Card>()  , 下面用了简洁的写法
     var cards = [Card]()
     
+//我要记录那一张朝上的卡片. indexOfOneAndOnlyFaceUpCard: Int?  可选类型的使用. 代表这张卡可以为nil
+    var indexOfOneAndOnlyFaceUpCard: Int?
+
+    
+    //做下面几件事1.
+    /// 选择卡片
+    ///做下面几件事
+    ///1.忽略已经配对了的卡片.
+    /// 1. 没有卡片朝上. 我选了, 就翻过来
+    /// 2. 两张卡片朝上, 有配对了和没配对情况. 然后我要开始新一轮的配对
+    /// 3. 一张卡片朝上,
+    /// 我要记录那一张朝上的卡片. indexOfOneAndOnlyFaceUpCard: Int?  可选类型的使用. 代表这张卡可以为nil
+    ///
     func chooseCard(at index: Int) {
-        
+        if !cards[index].isMatched {
+            if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
+                // 3. check if cards match
+                if cards[matchIndex].identifier == cards[index].identifier {
+                    cards[matchIndex].isMatched = true
+                    cards[index].isMatched = true
+                }
+                cards[index].isFaceUp = true
+                indexOfOneAndOnlyFaceUpCard = nil //置空.
+                
+            } else {
+                // 1 and 2 . either no cards or 2 cards are face up
+                for flipDownIndex in cards.indices {
+                    cards[flipDownIndex].isFaceUp = false
+                }
+                cards[index].isFaceUp = true
+                indexOfOneAndOnlyFaceUpCard = index
+            }
+        }
     }
     
     
@@ -27,16 +58,15 @@ class Concentration {
             let card = Card()
             cards += [card, card]
         }
-        // todo: shuffle the cards
-
-        
+        // shuffle the cards
+        cards = cards.shuffled()
     }
     
     
     
     
     
-// 下面是 init(numberOfPairsOfCards: Int) { 这个方法的详细注解
+/* 下面是 init(numberOfPairsOfCards: Int) { 这个方法的详细注解
     init(numberOfPairsOfCards2: Int) {
 // "_"代表, 可以忽略这个变量.
         for _ in 1...numberOfPairsOfCards2 {
@@ -51,12 +81,12 @@ class Concentration {
 //            cards.append(card)
 //--- 3. --- 继续简写, cards数组里加两个新值.
             cards += [card, card]
-            
+            又因为 copy, 所以这里[card,card] identifier是一样的.  加进去后面才能matched .
         }
     }
+*/
+    
+    
 
-    
-    
-    
     
 }

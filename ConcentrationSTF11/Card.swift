@@ -26,6 +26,7 @@ struct Card {
         return Card.identifierFactory
     }
     
+    // 创建唯一标识 的 卡
     init() {
         self.identifier = Card.getUniqueIdentifier()
     }
