@@ -64,7 +64,6 @@
 				8F92296823EBB9FF004976A1 /* Card.swift */,
 				BCD406AB23C37C4D00AAA291 /* ViewController.swift */,
 				BCD406AD23C37C4D00AAA291 /* Main.storyboard */,
-				BCD406B223C37C5000AAA291 /* LaunchScreen.storyboard */,
 				BCD406BB23C37E2600AAA291 /* SupportingFiles */,
 				BCD406B523C37C5000AAA291 /* Info.plist */,
 			);
@@ -74,6 +73,7 @@
 		BCD406BB23C37E2600AAA291 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				BCD406B223C37C5000AAA291 /* LaunchScreen.storyboard */,
 				BCD406A723C37C4D00AAA291 /* AppDelegate.swift */,
 				BCD406A923C37C4D00AAA291 /* SceneDelegate.swift */,
 				BCD406B023C37C5000AAA291 /* Assets.xcassets */,
