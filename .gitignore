@@ -1,0 +1,106 @@
+# OSX
+#
+.DS_Store
+
+# Xcode
+#
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+### Xcode Patch ###
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+/*.gcno
+
+# CocoaPods
+#
+Pods/
+
+# gem
+#
+Gemfile.lock
+ios/.bundle/
+
+# Carthage
+#
+ios/Carthage/Build
+ios/Carthage/Checkouts
+
+# ios fastlane
+# fastlane specific
+ios/fastlane/report.xml
+
+# deliver temporary files
+ios/fastlane/Preview.html
+
+# snapshot generated screenshots
+ios/fastlane/screenshots/screenshots.html
+
+# scan temporary files
+ios/fastlane/test_output
+
+ios/build/fastlane
+
+
+# android fastlane
+# fastlane specific
+android/fastlane/report.xml
+
+# deliver temporary files
+android/fastlane/Preview.html
+
+# snapshot generated screenshots
+android/fastlane/screenshots/screenshots.html
+
+# scan temporary files
+android/fastlane/test_output
+
+# Android/IJ
+android/app/bin
+android/app/proguardMapping.txt
+.project
+#
+.idea
+.gradle
+local.properties
+build
+#*.keystore
+
+android/captures
+android/app/proguardMapping.txt
+
+# node.js
+#
+node_modules
+npm-debug.log
+
+# webstorm
+#
+*.iml
+
+# vscode
+#
+jsconfig.json
+.vscode/.react
+
+# patch
+!scripts/patch/node_modules
+
+# mobshare
+android/tmpmob/
