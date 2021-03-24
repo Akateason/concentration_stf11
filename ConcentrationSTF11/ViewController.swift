@@ -23,15 +23,12 @@ class ViewController: UIViewController {
         }
     }
         
+    /// UIs
     // lb flip count
     @IBOutlet weak var flipCountLabel: UILabel!
-    
     // IBOutlet collection 数组 所有card button
     @IBOutlet var cardButtons: [UIButton]!
 //    @IBOutlet var cardButtons: Array<UIButton>!
-    
-
-    
     
     // 点击卡片 IBAction
     @IBAction func touchCard(_ sender: UIButton) {
@@ -83,10 +80,6 @@ class ViewController: UIViewController {
      //        }
      // 因为emoji[card.identifier]是个可选类型. 所以这里也可以用if let , 甚至可以用默认值"??" 简写.
      */
-    
-    
-    
-    
 }
 
  
