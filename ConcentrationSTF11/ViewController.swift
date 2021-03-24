@@ -10,30 +10,33 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    // 变量. 翻牌游戏
+/// Props
+    // game 变量 翻牌游戏
     // 加lazy. 因为属性必须在self初始化之后. 所以这里. 一个依赖着另一个.
     // 但是加了lazy不能用property Observer(didSet) .
     // 除以2,因为有两对.  因为我在Concentration每次会生成一对card
     lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
     
-    // 翻牌翻过的次数 , 运用property Observer. didSet
+    // flipCount 翻牌翻过的次数 , 运用property Observer. didSet
     var flipCount: Int = 0 {
+        // didSet表示每次setFlipCount变量的时候，都会走到这里下面的。
         didSet {
             flipCountLabel.text = "Flips: \(flipCount)"
         }
     }
         
-    /// UIs
+/// UIs
     // lb flip count
     @IBOutlet weak var flipCountLabel: UILabel!
     // IBOutlet collection 数组 所有card button
+    // @IBOutlet var cardButtons: Array<UIButton>!
     @IBOutlet var cardButtons: [UIButton]!
-//    @IBOutlet var cardButtons: Array<UIButton>!
+    
     
     // 点击卡片 IBAction
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount += 1
-        //因为. func firstIndex(of element: UIButton) -> Int? 返回的是可选类型.
+        //因为. func firstIndex(of element: UIButton) -> Int? 返回的是可选类型. 拿到按钮数组的index下标
         if let cardNumber = cardButtons.firstIndex(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
@@ -58,7 +61,7 @@ class ViewController: UIViewController {
     }
     
     
-    var emojiChoices = ["🎃","👻","😝","🦇","🐖","🐱","🐔","🍬","🐦","🚄","🚗"]
+    var emojiChoices: [String] = ["🎃","👻","😝","🦇","🐖","🐱","🐔","🍬","🐦","🚄","🚗"]
 
 //    var emoji = Dictionary<Int,String>()
     var emoji = [Int:String]() // 声明字典, 简写
