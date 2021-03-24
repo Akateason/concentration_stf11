@@ -63,7 +63,7 @@ class ViewController: UIViewController {
     
     var emojiChoices: [String] = ["🎃","👻","😝","🦇","🐖","🐱","🐔","🍬","🐦","🚄","🚗"]
 
-//    var emoji = Dictionary<Int,String>()
+    // var emoji = Dictionary<Int,String>()
     var emoji = [Int:String]() // 声明字典, 简写
     
     func emoji(for card: Card) -> String {
