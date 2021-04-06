@@ -9,8 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-/// Props
+    
+    // MARK: test mark mark mark
+    // TODO: test todo todo todo
+    
+    /// Props
     // game 变量 翻牌游戏
     // 加lazy. 因为这里Concentration在初始化,self还没初始化好,属性必须在self初始化之后. 所以这里. 一个依赖着另一个.
     // 但是加了lazy不能用property Observer(didSet) .
@@ -25,8 +28,8 @@ class ViewController: UIViewController {
             flipCountLabel.text = "Flips: \(flipCount)"
         }
     }
-        
-/// UIs
+    
+    /// UIs
     // lb flip count
     @IBOutlet weak var flipCountLabel: UILabel!
     // IBOutlet collection 数组 所有card button
@@ -45,7 +48,7 @@ class ViewController: UIViewController {
             print("chosen card was not in cardButtons")
         }
     }
-            
+    
     func updateViewFromModel() {
         //var indices: Range<Int> { get }
         //for index in 0..<cardButtons.count {
@@ -64,7 +67,7 @@ class ViewController: UIViewController {
     
     
     var emojiChoices: [String] = ["🎃","👻","😝","🦇","🐖","🐱","🐔","🍬","🐦","🚄","🚗"]
-
+    
     // var emoji = Dictionary<Int,String>()
     var emoji = [Int:String]() // 声明字典, 简写
     
@@ -87,4 +90,4 @@ class ViewController: UIViewController {
      */
 }
 
- 
+

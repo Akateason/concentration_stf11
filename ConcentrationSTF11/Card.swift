@@ -14,7 +14,7 @@ struct Card {
     var isFaceUp     = false
     var isMatched    = false
     var identifier: Int
-        
+    
     // 静态变量 随着类而储存, 而不是跟着实例.
     static var identifierFactory = 0
     // 静态方法
@@ -31,4 +31,4 @@ struct Card {
         self.identifier = Card.getUniqueIdentifier()
     }
 }
- 
+
