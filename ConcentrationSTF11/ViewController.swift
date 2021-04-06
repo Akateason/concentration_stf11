@@ -12,10 +12,11 @@ class ViewController: UIViewController {
 
 /// Props
     // game 变量 翻牌游戏
-    // 加lazy. 因为属性必须在self初始化之后. 所以这里. 一个依赖着另一个.
+    // 加lazy. 因为这里Concentration在初始化,self还没初始化好,属性必须在self初始化之后. 所以这里. 一个依赖着另一个.
     // 但是加了lazy不能用property Observer(didSet) .
-    // 除以2,因为有两对.  因为我在Concentration每次会生成一对card
+    // 除以2,因为有两对.因为我在Concentration每次会生成一对card
     lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
+    //Concentration（）是class免费的构造器
     
     // flipCount 翻牌翻过的次数 , 运用property Observer. didSet
     var flipCount: Int = 0 {
@@ -31,7 +32,7 @@ class ViewController: UIViewController {
     // IBOutlet collection 数组 所有card button
     // @IBOutlet var cardButtons: Array<UIButton>!
     @IBOutlet var cardButtons: [UIButton]!
-    
+    //直接用了IBOutlet的collection,这样可以直接取到按钮数组的下标!
     
     // 点击卡片 IBAction
     @IBAction func touchCard(_ sender: UIButton) {
@@ -47,11 +48,12 @@ class ViewController: UIViewController {
             
     func updateViewFromModel() {
         //var indices: Range<Int> { get }
+        //for index in 0..<cardButtons.count {
         for index in cardButtons.indices {
             let button = cardButtons[index]
             let card = game.cards[index]
             if card.isFaceUp {
-                button.setTitle(emoji(for: card), for: UIControl.State.normal)
+                button.setTitle( emoji(for: card), for: UIControl.State.normal)
                 button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             } else {
                 button.setTitle("", for: UIControl.State.normal)
@@ -69,7 +71,7 @@ class ViewController: UIViewController {
     func emoji(for card: Card) -> String {
         if emoji[card.identifier] == nil, emojiChoices.count > 0 {
             let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))  // 明确类型转换.
-            emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
+            emoji[card.identifier] = emojiChoices.remove(at: randomIndex) // 把删掉的对应的set到字典里
         }
         return emoji[card.identifier] ?? "?"
     }

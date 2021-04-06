@@ -10,22 +10,22 @@
 
 import Foundation
 
-
 struct Card {
-    
     var isFaceUp     = false
     var isMatched    = false
     var identifier: Int
-    
-    
+        
     // 静态变量 随着类而储存, 而不是跟着实例.
     static var identifierFactory = 0
     // 静态方法
     static func getUniqueIdentifier() -> Int {
+        //静态变量+1 , 唯一
         Card.identifierFactory += 1
         return Card.identifierFactory
     }
     
+    // 初始化
+    // 结构体和类不同，这里我要创建自定义构造方法
     // 创建唯一标识 的 卡
     init() {
         self.identifier = Card.getUniqueIdentifier()
