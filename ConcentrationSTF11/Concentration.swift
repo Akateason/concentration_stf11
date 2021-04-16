@@ -14,10 +14,10 @@ class Concentration {
     
     //赋值右边（）是数组初始化方法
     //var cards = Array<Card>()  , 下面用了简洁的写法
-    var cards = [Card]()
+    private(set) var cards = [Card]()
     
     //我要记录那一张朝上的卡片. indexOfOneAndOnlyFaceUpCard: Int?  可选类型的使用. 代表这张卡可以为nil
-    var indexOfOneAndOnlyFaceUpCard: Int? {
+    private var indexOfOneAndOnlyFaceUpCard: Int? {
         get {
             var foundIndex: Int?
             for index in cards.indices {
@@ -51,6 +51,7 @@ class Concentration {
     /// 我要记录那一张朝上的卡片. indexOfOneAndOnlyFaceUpCard: Int?  可选类型的使用. 代表这张卡可以为nil
     ///
     func chooseCard(at index: Int) {
+        assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)) : chosen index not in the cards")
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 // 3. check if cards match
@@ -70,6 +71,7 @@ class Concentration {
     /// 初始化. 告诉我多少张牌. 然后我准备好.
     /// @numberOfPairsOfCards: 多少张牌的翻牌游戏.
     init(numberOfPairsOfCards: Int) {
+        assert(numberOfPairsOfCards>0, "Concentration.init(\(numberOfPairsOfCards)) : you must have at least one pair of cards")
         // ...是sequence
         //这里...表示从1开始<=numberOfPairsOfCards包含
         //如果是..<表示从1开始<numberOfPairsOfCards不包含

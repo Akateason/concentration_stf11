@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     // 加lazy. 因为这里Concentration在初始化,self还没初始化好,属性必须在self初始化之后. 所以这里. 一个依赖着另一个.
     // 但是加了lazy不能用property Observer(didSet) .
     // 除以2,因为有两对.因为我在Concentration每次会生成一对card
-    lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+    private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     //Concentration（）是class免费的构造器
     
     var numberOfPairsOfCards: Int {
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     }
     
     // flipCount 翻牌翻过的次数 , 运用property Observer. didSet
-    var flipCount: Int = 0 {
+    private(set) var flipCount: Int = 0 {
         // didSet表示每次setFlipCount变量的时候，都会走到这里下面的。
         didSet {
             flipCountLabel.text = "Flips: \(flipCount)"
@@ -39,14 +39,14 @@ class ViewController: UIViewController {
     
     /// UIs
     // lb flip count
-    @IBOutlet weak var flipCountLabel: UILabel!
+    @IBOutlet private weak var flipCountLabel: UILabel!
     // IBOutlet collection 数组 所有card button
     // @IBOutlet var cardButtons: Array<UIButton>!
-    @IBOutlet var cardButtons: [UIButton]!
+    @IBOutlet private var cardButtons: [UIButton]!
     //直接用了IBOutlet的collection,这样可以直接取到按钮数组的下标!
     
     // 点击卡片 IBAction
-    @IBAction func touchCard(_ sender: UIButton) {
+    @IBAction private func touchCard(_ sender: UIButton) {
         flipCount += 1
         //因为. func firstIndex(of element: UIButton) -> Int? 返回的是可选类型. 拿到按钮数组的index下标
         if let cardNumber = cardButtons.firstIndex(of: sender) {
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateViewFromModel() {
+    private func updateViewFromModel() {
         //var indices: Range<Int> { get }
         //for index in 0..<cardButtons.count {
         for index in cardButtons.indices {
@@ -72,14 +72,13 @@ class ViewController: UIViewController {
             }
         }
     }
-    
-    
-    var emojiChoices: [String] = ["🎃","👻","😝","🦇","🐖","🐱","🐔","🍬","🐦","🚄","🚗"]
+        
+    private var emojiChoices: [String] = ["🎃","👻","😝","🦇","🐖","🐱","🐔","🍬","🐦","🚄","🚗"]
     
     // var emoji = Dictionary<Int,String>()
-    var emoji = [Int:String]() // 声明字典, 简写
+    private var emoji = [Int:String]() // 声明字典, 简写
     
-    func emoji(for card: Card) -> String {
+    private func emoji(for card: Card) -> String {
         if emoji[card.identifier] == nil, emojiChoices.count > 0 {
             let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))  // 明确类型转换.
             emoji[card.identifier] = emojiChoices.remove(at: randomIndex) // 把删掉的对应的set到字典里

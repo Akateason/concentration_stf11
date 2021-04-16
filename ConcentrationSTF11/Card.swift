@@ -16,9 +16,9 @@ struct Card {
     var identifier: Int
     
     // 静态变量 随着类而储存, 而不是跟着实例.
-    static var identifierFactory = 0
+    private static var identifierFactory = 0
     // 静态方法
-    static func getUniqueIdentifier() -> Int {
+    private static func getUniqueIdentifier() -> Int {
         //静态变量+1 , 唯一
         Card.identifierFactory += 1
         return Card.identifierFactory
