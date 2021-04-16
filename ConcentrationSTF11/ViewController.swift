@@ -80,7 +80,8 @@ class ViewController: UIViewController {
     
     private func emoji(for card: Card) -> String {
         if emoji[card.identifier] == nil, emojiChoices.count > 0 {
-            let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))  // 明确类型转换.
+            //let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))  // 明确类型转换.
+            let randomIndex = emojiChoices.count.arc4random   // extension Int 扩展Int类型
             emoji[card.identifier] = emojiChoices.remove(at: randomIndex) // 把删掉的对应的set到字典里
         }
         return emoji[card.identifier] ?? "?"
@@ -97,4 +98,15 @@ class ViewController: UIViewController {
      */
 }
 
-
+// 扩展Int类型,加属性
+extension Int {
+    var arc4random: Int {
+        if self > 0 {
+            return Int(arc4random_uniform(UInt32(self)))  // 明确类型转换.
+        } else if self < 0 {
+            return -Int(arc4random_uniform(UInt32(abs(self))))
+        } else {
+            return 0
+        }
+    }
+}
