@@ -18,8 +18,16 @@ class ViewController: UIViewController {
     // 加lazy. 因为这里Concentration在初始化,self还没初始化好,属性必须在self初始化之后. 所以这里. 一个依赖着另一个.
     // 但是加了lazy不能用property Observer(didSet) .
     // 除以2,因为有两对.因为我在Concentration每次会生成一对card
-    lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
+    lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     //Concentration（）是class免费的构造器
+    
+    var numberOfPairsOfCards: Int {
+//        get {
+//            return (cardButtons.count + 1) / 2
+//        }
+        //如果是readonly的属性,可以去掉get{}
+        return (cardButtons.count + 1) / 2
+    }
     
     // flipCount 翻牌翻过的次数 , 运用property Observer. didSet
     var flipCount: Int = 0 {
