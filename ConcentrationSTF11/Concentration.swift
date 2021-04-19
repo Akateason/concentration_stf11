@@ -10,7 +10,7 @@
 import Foundation
 
 
-class Concentration {
+struct Concentration {
     
     //赋值右边（）是数组初始化方法
     //var cards = Array<Card>()  , 下面用了简洁的写法
@@ -50,7 +50,7 @@ class Concentration {
     /// 3. 一张卡片朝上,
     /// 我要记录那一张朝上的卡片. indexOfOneAndOnlyFaceUpCard: Int?  可选类型的使用. 代表这张卡可以为nil
     ///
-    func chooseCard(at index: Int) {
+    mutating func chooseCard(at index: Int) {
         assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)) : chosen index not in the cards")
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
