@@ -33,13 +33,26 @@ class ViewController: UIViewController {
     private(set) var flipCount: Int = 0 {
         // didSet表示每次setFlipCount变量的时候，都会走到这里下面的。
         didSet {
-            flipCountLabel.text = "Flips: \(flipCount)"
+            updateFlipCountLabel()
         }
+    }
+    
+    private func updateFlipCountLabel() {
+        let attributes: [NSAttributedString.Key:Any] = [
+            .strokeWidth : 5.0,
+            .strokeColor : UIColor.orange
+        ]
+        let attrStr = NSAttributedString(string: "Flips: \(flipCount)", attributes: attributes)
+        flipCountLabel.attributedText = attrStr
     }
     
     /// UIs
     // lb flip count
-    @IBOutlet private weak var flipCountLabel: UILabel!
+    @IBOutlet private weak var flipCountLabel: UILabel! {
+        didSet {
+            updateFlipCountLabel()
+        }
+    }
     // IBOutlet collection 数组 所有card button
     // @IBOutlet var cardButtons: Array<UIButton>!
     @IBOutlet private var cardButtons: [UIButton]!
@@ -73,16 +86,18 @@ class ViewController: UIViewController {
         }
     }
         
-    private var emojiChoices: [String] = ["🎃","👻","😝","🦇","🐖","🐱","🐔","🍬","🐦","🚄","🚗"]
+//    private var emojiChoices: [String] = ["🎃","👻","😝","🦇","🐖","🐱","🐔","🍬","🐦","🚄","🚗"]
+    private var emojiChoices: String = "🎃👻😝🦇🐖🐱🐔🍬🐦🚄🚗"
+    
     
     // var emoji = Dictionary<Int,String>()
     private var emoji = [Int:String]() // 声明字典, 简写
     
     private func emoji(for card: Card) -> String {
         if emoji[card.identifier] == nil, emojiChoices.count > 0 {
-            //let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))  // 明确类型转换.
-            let randomIndex = emojiChoices.count.arc4random   // extension Int 扩展Int类型
-            emoji[card.identifier] = emojiChoices.remove(at: randomIndex) // 把删掉的对应的set到字典里
+            let randomStringIndex = emojiChoices.index(emojiChoices.startIndex, offsetBy: emojiChoices.count.arc4random)
+            // 把删掉的对应的set到字典里
+            emoji[card.identifier] = String(emojiChoices.remove(at: randomStringIndex))
         }
         return emoji[card.identifier] ?? "?"
     }
