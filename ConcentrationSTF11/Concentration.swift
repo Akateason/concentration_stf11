@@ -6,6 +6,7 @@
 //  Copyright © 2020 mamba. All rights reserved.
 //翻牌游戏 class
 //类 自动有一个构造方法不带参数的  free Init
+// -
 
 import Foundation
 
